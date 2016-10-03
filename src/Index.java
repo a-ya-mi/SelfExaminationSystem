@@ -31,6 +31,6 @@ public class Index {
     }
 
     System.out.println("Your answer is "+answerFinal);
-
+    System.out.println("______________________");
 }
 }
