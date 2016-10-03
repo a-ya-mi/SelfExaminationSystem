@@ -21,7 +21,7 @@ public class Index {
 
     String answerUser = br.readLine();
     int answerInteger = Integer.parseInt(answerUser);
-    //The system check the answer
+    //The system check the users answer
     //The system write back
     if(answerInteger==4){
         answerFinal=true;
