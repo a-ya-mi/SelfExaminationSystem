@@ -9,4 +9,13 @@ public class Answer {
         this.answerText = answerText;
         this.isCorrect = isCorrect;
     }
+
+    public String getAnswerText(){
+        return answerText;
+    }
+
+    public boolean getIsCorrect(){
+        return isCorrect;
+    }
+
 }
