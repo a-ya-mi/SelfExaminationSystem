@@ -18,4 +18,12 @@ public class Answer {
         return isCorrect;
     }
 
+    public void setAnswerText(String answerText){
+        this.answerText = answerText;
+    }
+
+    public void setIsCorrect(boolean isCorrect){
+        this.isCorrect = isCorrect;
+    }
+
 }
