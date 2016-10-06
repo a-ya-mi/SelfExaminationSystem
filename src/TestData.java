@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * In this Class will be created hashMap ??? or ArrayList with Questions and Answers Pairs
+ *
  */
 public class TestData {
     //int testId; нужен ли он?
@@ -33,4 +33,59 @@ public class TestData {
         questions.add(new Question("Who is the next President of RF", listOfAnswersForTheQuestion)); // we put the question into ArrayList of questions
     }
 
+
+    //private Class for keeping Question
+    private class Question {
+        private String questionText;
+        private ArrayList<Answer> answers;
+
+        public Question (String questionText, ArrayList<Answer> answers) {
+            this.questionText = questionText;
+            this.answers = answers;
+        }
+
+        public String questionText(){
+            return questionText;
+        }
+
+        public ArrayList<Answer> getArrayListAnswers(){
+            return answers;
+        }
+
+        public void setquestionText(String questionText){
+            this.questionText = questionText;
+        }
+
+        public void setArrayListAnswers(ArrayList<Answer> answers){
+            this.answers = answers;
+        }
+    }
+
+    //private Class for keeping Answer
+    private class Answer {
+        private String answerText;
+        private boolean isCorrect;
+
+        public Answer(String answerText, boolean isCorrect ){
+            this.answerText = answerText;
+            this.isCorrect = isCorrect;
+        }
+
+        public String getAnswerText(){
+            return answerText;
+        }
+
+        public boolean getIsCorrect(){
+            return isCorrect;
+        }
+
+        public void setAnswerText(String answerText){
+            this.answerText = answerText;
+        }
+
+        public void setIsCorrect(boolean isCorrect){
+            this.isCorrect = isCorrect;
+        }
+
+    }
 }
