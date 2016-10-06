@@ -1,19 +1,35 @@
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.*;
 
-/**
- * Created by Aksana on 02.10.2016.
- */
 public class Index {
 
-    public static void main (String[] args)throws IOException{
+    public static void main (String[] args) {
 
+        TestData test = new TestData(1);
+
+        System.out.println("The test name is: " + test.getTestName());
+        System.out.println("The test description is: " + test.getTestDescription());
+
+        System.out.println();
+
+        int i = 1;
+        for (TestData.Question question : test.getQuestions()) { // NO RANDOMIZING YET!!! TO DO.
+            System.out.println("Question " + i + ": " + question.getQuestionText());
+            i++;
+            int j = 1;
+            for (TestData.Question.Answer answer : question.getAnswers()) { // NO RANDOMIZING YET!!! TO DO.
+                System.out.println(j + ". " + answer.getAnswerText());
+                j++;
+            }
+            System.out.println("Write your answer under the line");
+            System.out.println("______________________");
+            System.out.println();
+        }
+
+/*
         //The user see the question
-    System.out.println("Question: 2x2 is....");
-    System.out.println("Write your answer under the line");
-    System.out.println("______________________");
+    System.out.println("TestData.Question: 2x2 is....");
 
     boolean answerFinal=false;
     //The user write the answer
@@ -32,5 +48,6 @@ public class Index {
 
     System.out.println("Your answer is "+answerFinal);
     System.out.println("______________________");
-}
+*/
+    }
 }

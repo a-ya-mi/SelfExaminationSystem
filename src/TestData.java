@@ -1,4 +1,3 @@
-
 import java.lang.String;
 import java.util.ArrayList;
 
@@ -46,17 +45,68 @@ public class TestData {
 
         for (String questionString : testData) {
             String[] parsedQuestionData = questionString.split("\\|\\|\\|");
-            ArrayList<Answer> answers = new ArrayList<>();
+            ArrayList<Question.Answer> answers = new ArrayList<>();
             boolean isCorrect = true;
             for (int i = 1; i < parsedQuestionData.length; i++) {
                 if (parsedQuestionData[i].equals("divider25745406472")) {
                     isCorrect = false;
                     continue;
                 }
-                answers.add(new Answer(parsedQuestionData[i],isCorrect));
+                answers.add(new Question.Answer(parsedQuestionData[i],isCorrect));
             }
             questions.add(new Question(parsedQuestionData[0],answers));
         }
     }
 
+    public static class Question {
+        private String questionText;
+        private ArrayList<Answer> answers;
+
+        public Question (String questionText, ArrayList<Answer> answers) {
+            this.questionText = questionText;
+            this.answers = answers;
+        }
+
+        public String getQuestionText() {
+            return questionText;
+        }
+
+        public void setQuestionText(String questionText) {
+            this.questionText = questionText;
+        }
+
+        public ArrayList<Answer> getAnswers() {
+            return answers;
+        }
+
+        public void setAnswers(ArrayList<Answer> answers) {
+            this.answers = answers;
+        }
+
+        public static class Answer {
+            private String answerText;
+            private boolean isCorrect;
+
+            public Answer(String answerText, boolean isCorrect ){
+                this.answerText = answerText;
+                this.isCorrect = isCorrect;
+            }
+
+            public String getAnswerText() {
+                return answerText;
+            }
+
+            public void setAnswerText(String answerText) {
+                this.answerText = answerText;
+            }
+
+            public boolean isCorrect() {
+                return isCorrect;
+            }
+
+            public void setCorrect(boolean isCorrect) {
+                this.isCorrect = isCorrect;
+            }
+        }
+    }
 }
