@@ -5,7 +5,6 @@ import java.io.*;
 public class Index {
 
     public static void main (String[] args) {
-
         TestData test = new TestData(1);
 
         System.out.println("The test name is: " + test.getTestName());
