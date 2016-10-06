@@ -9,4 +9,21 @@ public class Answer {
         this.answerText = answerText;
         this.isCorrect = isCorrect;
     }
+
+    public String getAnswerText(){
+        return answerText;
+    }
+
+    public boolean getIsCorrect(){
+        return isCorrect;
+    }
+
+    public void setAnswerText(String answerText){
+        this.answerText = answerText;
+    }
+
+    public void setIsCorrect(boolean isCorrect){
+        this.isCorrect = isCorrect;
+    }
+
 }
