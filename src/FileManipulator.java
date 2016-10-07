@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 
 public class FileManipulator {
+
     private static FileManipulator instance;
 
     private FileManipulator() {
