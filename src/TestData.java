@@ -63,7 +63,7 @@ public class TestData {
 
 
     //Class Question for creating and keeping Questions
-    private class Question {
+    protected class Question {
         private String questionText;
         private ArrayList<Answer> answers;
         //Construktor
@@ -89,7 +89,7 @@ public class TestData {
         }
 
         //Class Answer for creating and keeping Answers
-        private class Answer {
+        protected class Answer {
             private String answerText;
             private boolean isCorrect;
             //Construktor
