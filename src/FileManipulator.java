@@ -5,7 +5,12 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+/**
+ * The class for manipulating test files. It is a Singleton.
+ */
+
 public class FileManipulator {
+
     private static FileManipulator instance;
 
     private FileManipulator() {
@@ -18,6 +23,9 @@ public class FileManipulator {
         return instance;
     }
 
+    /**
+     * We read all data from a file into an ArrayList of Strings and return the ArrayList
+     */
     public ArrayList<String> readFileToStringList (String fileName) {
         ArrayList<String> returnList = new ArrayList<>();
 
