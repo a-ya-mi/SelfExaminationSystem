@@ -25,7 +25,7 @@ public class TestData {
             String[] parsedQuestionData = questionString.split("\\|\\|\\|");
             ArrayList<Question.Answer> answers = new ArrayList<>();
             boolean isCorrect = true;
-            for (int i = 0; i < parsedQuestionData.length; i++) {
+            for (int i = 1; i < parsedQuestionData.length; i++) {
                 if (parsedQuestionData[i].equals("divider25745406472")) {
                     isCorrect = false;
                     continue;
