@@ -6,10 +6,36 @@ import java.util.ArrayList;
  */
 
 public class TestData {
-    //int testId; do we need it?
+    //I think we will need TestID later for Databese and when it will be more than one Test
+    private int testId;
     private String testName;
     private String testDescription;
     private ArrayList<Question> questions;
+
+    //Construktor. Create new TestData, fill the Question and Answers (using read from the file)
+    public TestData(int fileIndex){
+        FileManipulator fileManipulator = FileManipulator.getInstance();
+        ArrayList<String> testData = fileManipulator.readFileToStringList("./tests/test" + fileIndex + ".txt");
+
+        this.testName = testData.remove(0);
+        this.testDescription = testData.remove(0);
+        this.questions = new ArrayList<>();
+
+        for (String questionString : testData) {
+            String[] parsedQuestionData = questionString.split("\\|\\|\\|");
+            ArrayList<Question.Answer> answers = new ArrayList<>();
+            boolean isCorrect = true;
+            for (int i = 1; i < parsedQuestionData.length; i++) {
+                if (parsedQuestionData[i].equals("divider25745406472")) {
+                    isCorrect = false;
+                    continue;
+                }
+                answers.add(new Question.Answer(parsedQuestionData[i],isCorrect));
+            }
+            questions.add(new Question(parsedQuestionData[0],answers));
+        }
+    }
+
 
     public String getTestName() {
         return testName;
@@ -35,33 +61,12 @@ public class TestData {
         this.questions = questions;
     }
 
-    public TestData(int fileIndex){
-        FileManipulator fileManipulator = FileManipulator.getInstance();
-        ArrayList<String> testData = fileManipulator.readFileToStringList("./tests/test" + fileIndex + ".txt");
 
-        this.testName = testData.remove(0);
-        this.testDescription = testData.remove(0);
-        this.questions = new ArrayList<>();
-
-        for (String questionString : testData) {
-            String[] parsedQuestionData = questionString.split("\\|\\|\\|");
-            ArrayList<Question.Answer> answers = new ArrayList<>();
-            boolean isCorrect = true;
-            for (int i = 1; i < parsedQuestionData.length; i++) {
-                if (parsedQuestionData[i].equals("divider25745406472")) {
-                    isCorrect = false;
-                    continue;
-                }
-                answers.add(new Question.Answer(parsedQuestionData[i],isCorrect));
-            }
-            questions.add(new Question(parsedQuestionData[0],answers));
-        }
-    }
-
-    public static class Question {
+    //Class Question for creating and keeping Questions
+    private class Question {
         private String questionText;
         private ArrayList<Answer> answers;
-
+        //Construktor
         public Question (String questionText, ArrayList<Answer> answers) {
             this.questionText = questionText;
             this.answers = answers;
@@ -83,10 +88,11 @@ public class TestData {
             this.answers = answers;
         }
 
-        public static class Answer {
+        //Class Answer for creating and keeping Answers
+        private class Answer {
             private String answerText;
             private boolean isCorrect;
-
+            //Construktor
             public Answer(String answerText, boolean isCorrect ){
                 this.answerText = answerText;
                 this.isCorrect = isCorrect;
