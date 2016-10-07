@@ -96,10 +96,25 @@ public class TestData {
             this.answers = answers;
         }
 
+        /**
+         * The method returns numberOfCorrectAnswers for a question
+         */
+        public int numberOfCorrectAnswers() {
+            int numberOfCorrectAnswers = 0;
+            for (Answer answer : answers) {
+                if (answer.isCorrect == true) {
+                    numberOfCorrectAnswers++;
+                }
+            }
+            return numberOfCorrectAnswers;
+        }
+
+
         //Class Answer for creating and keeping Answers
         protected class Answer {
             private String answerText;
             private boolean isCorrect;
+
             //Constructor
             public Answer(String answerText, boolean isCorrect ){
                 this.answerText = answerText;
@@ -121,6 +136,7 @@ public class TestData {
             public void setCorrect(boolean isCorrect) {
                 this.isCorrect = isCorrect;
             }
+
         }
     }
 }
