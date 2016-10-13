@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashSet;
+import java.util.Random;
 
 public class Index {
 
@@ -11,18 +12,37 @@ public class Index {
         System.out.println("The test description is: " + test.getTestDescription());
 
         System.out.println();
-
+        
+        
+        System.out.println("ALL Questions in Random order");
+        //Ramdom numbers in Array TODO - that numbers not repeat! 
+        int[] orderForQuestions = new int[test.getTheNumberOfQuestions()];
+        Random rand = new Random();
+        for (int i = 0; i < (test.getTheNumberOfQuestions()); i++) {
+            orderForQuestions[i] = (int) rand.nextInt(test.getTheNumberOfQuestions() - 1);;
+        }
+        
+        //Questions in really Random order
+        for(int i=0;i<orderForQuestions.length;i++){
+            System.out.println(test.getQuestions().get(orderForQuestions[i]).getQuestionText());
+         }
+        System.out.println();
+        System.out.println();
+        
+        
+        
         int i = 1;
         for (TestData.Question question : test.getQuestions()) { // NO RANDOMIZING YET!!! TO DO.
             // We show the question and answers to a user
             System.out.println("Question " + i + ": " + question.getQuestionText());
             i++;
             int j = 1;
-            for (TestData.Question.Answer answer : question.getAnswers()) { // NO RANDOMIZING YET!!! TO DO.
-                System.out.println(j + ". " + answer.getAnswerText());
-                j++;
-            }
+                for (TestData.Question.Answer answer : question.getAnswers()) { // NO RANDOMIZING YET!!! TO DO.
+                    System.out.println(j + ". " + answer.getAnswerText());
+                    j++;
+                }
             System.out.println("Write the numbers of correct answers: ");
+
 
             // We ask for answers from a User
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -54,13 +74,5 @@ public class Index {
             System.out.println("NEXT Question");
         }
 
-
-/*
-    boolean answerFinal=false;
-    //The user write the answer
-
-    System.out.println("Your answer is "+answerFinal);
-    System.out.println("______________________");
-*/
     }
 }
