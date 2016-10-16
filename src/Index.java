@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashSet;
+import java.util.Random;
+import java.util.Iterator;
+import java.util.Set;
 
 public class Index {
 
@@ -11,18 +14,49 @@ public class Index {
         System.out.println("The test description is: " + test.getTestDescription());
 
         System.out.println();
+        
+        
+        System.out.println("ALL Questions in Random order");
+        //Ramdom numbers in Set (HasSet of Integers). This way put Questions will not repeat
+        Set<Integer> orderForQuestionsSet= new HashSet<Integer>();
 
+        Random rand = new Random();
+        boolean bool=true;
+        while (bool) {
+            if(orderForQuestionsSet.size()==(test.getTheNumberOfQuestions()-1)){
+                bool=false;
+            }
+            orderForQuestionsSet.add((rand.nextInt(test.getTheNumberOfQuestions())));
+        }
+        
+        Iterator it=orderForQuestionsSet.iterator();
+        int a;
+        //Questions in really Random order
+        //TODO - the number of Question changed itself (because of use Iterator.next()). Sometimes one Question goes loos
+        while(it.hasNext()){
+                a=(int)it.next();
+                System.out.println(test.getQuestions().get(a).getQuestionText());
+            }
+        
+        System.out.println();
+        System.out.println();
+        
+        
+        
+        //Answer from one Question in Random order TODO here
+       
         int i = 1;
         for (TestData.Question question : test.getQuestions()) { // NO RANDOMIZING YET!!! TO DO.
             // We show the question and answers to a user
             System.out.println("Question " + i + ": " + question.getQuestionText());
             i++;
             int j = 1;
-            for (TestData.Question.Answer answer : question.getAnswers()) { // NO RANDOMIZING YET!!! TO DO.
-                System.out.println(j + ". " + answer.getAnswerText());
-                j++;
-            }
+                for (TestData.Question.Answer answer : question.getAnswers()) { // NO RANDOMIZING YET!!! TO DO.
+                    System.out.println(j + ". " + answer.getAnswerText());
+                    j++;
+                }
             System.out.println("Write the numbers of correct answers: ");
+
 
             // We ask for answers from a User
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -54,13 +88,5 @@ public class Index {
             System.out.println("NEXT Question");
         }
 
-
-/*
-    boolean answerFinal=false;
-    //The user write the answer
-
-    System.out.println("Your answer is "+answerFinal);
-    System.out.println("______________________");
-*/
-    }
+   }
 }
