@@ -2,6 +2,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.Iterator;
+import java.util.Set;
 
 public class Index {
 
@@ -15,22 +17,34 @@ public class Index {
         
         
         System.out.println("ALL Questions in Random order");
-        //Ramdom numbers in Array TODO - that numbers not repeat! 
-        int[] orderForQuestions = new int[test.getTheNumberOfQuestions()];
+        //Ramdom numbers in Set (HasSet of Integers). This way put Questions will not repeat
+        Set<Integer> orderForQuestionsSet= new HashSet<Integer>();
+
         Random rand = new Random();
-        for (int i = 0; i < (test.getTheNumberOfQuestions()); i++) {
-            orderForQuestions[i] = (int) rand.nextInt(test.getTheNumberOfQuestions() - 1);;
+        boolean bool=true;
+        while (bool) {
+            if(orderForQuestionsSet.size()==(test.getTheNumberOfQuestions()-1)){
+                bool=false;
+            }
+            orderForQuestionsSet.add((rand.nextInt(test.getTheNumberOfQuestions())));
         }
         
+        Iterator it=orderForQuestionsSet.iterator();
+        int a;
         //Questions in really Random order
-        for(int i=0;i<orderForQuestions.length;i++){
-            System.out.println(test.getQuestions().get(orderForQuestions[i]).getQuestionText());
-         }
+        //TODO - the number of Question changed itself (because of use Iterator.next()). Sometimes one Question goes loos
+        while(it.hasNext()){
+                a=(int)it.next();
+                System.out.println(test.getQuestions().get(a).getQuestionText());
+            }
+        
         System.out.println();
         System.out.println();
         
         
         
+        //Answer from one Question in Random order TODO here
+       
         int i = 1;
         for (TestData.Question question : test.getQuestions()) { // NO RANDOMIZING YET!!! TO DO.
             // We show the question and answers to a user
@@ -74,5 +88,5 @@ public class Index {
             System.out.println("NEXT Question");
         }
 
-    }
+   }
 }
