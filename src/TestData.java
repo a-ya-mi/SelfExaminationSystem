@@ -101,6 +101,9 @@ public class TestData {
             this.answers = answers;
         }
 
+        public int getTheNumberOfAllAnswers(){
+               return answers.size();
+            }
         /**
          * The method returns numberOfCorrectAnswers for a question
          */
