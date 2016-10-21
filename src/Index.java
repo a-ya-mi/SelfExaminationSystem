@@ -6,10 +6,19 @@ import java.util.Random;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 
-public class Index {
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class Index extends JFrame {
 
     public static void main(String[] args) {
         TestData test = new TestData(1);
+       //We create objekt from OurFrame (actually this is JFrame). This way we can put all JFrame Code into OurFrame, and not here. Or we can make some JFrames for later use
+        JFrame jf = new OurFrame();
+        
+        
 
         System.out.println("The test name is: " + test.getTestName());
         System.out.println("The test description is: " + test.getTestDescription());
