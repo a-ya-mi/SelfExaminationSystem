@@ -22,7 +22,7 @@ public class TestData {
          */
         FileManipulator fileManipulator = FileManipulator.getInstance();
         // you need to put here your path to "tests" directory!!!
-        ArrayList<String> testData = fileManipulator.readFileToStringList("E:\\SelfExaminationSystemGIT\\SelfExaminationSystem\\tests\\test" + fileIndex + ".txt");
+        ArrayList<String> testData = fileManipulator.readFileToStringList("tests\\test" + fileIndex + ".txt");
 
         this.testName = testData.remove(0); // 1st element of testData ArrayList is always testName (according to our file structure). We read it into this.testName and delete from testData ArrayList at the same time
         this.testDescription = testData.remove(0); // 2nd element of testData ArrayList is always testDescription, but since we already deleted 1st element, now testDescription became th1 1st element. We read it into this.testDescription and delete from testData ArrayList at the same time
