@@ -25,39 +25,26 @@ public class Index extends JFrame {
 
         System.out.println();
 
-        System.out.println("ALL Questions in Random order");
         //Questions (to see what happend - System.out.println()
         LinkedHashSet<Integer> orderForQuestionsSet = randomOrder((test.getTheNumberOfQuestions() - 1));
         Iterator it = orderForQuestionsSet.iterator();
         int a;
         while (it.hasNext()) {
             a = (int) it.next();
-            System.out.println(test.getQuestions().get(a).getQuestionText());
-            getAnswerFromOneQuestionInRandomOrder(test.getQuestions().get(a));
-            askAnswersFromUser(test.getQuestions().get(a));
+            TestData.Question currentQuestion = test.getQuestions().get(a);
+            System.out.println(currentQuestion.getQuestionText());
+            LinkedHashSet<Integer> orderForAnswersSet = randomOrder(currentQuestion.getTheNumberOfAllAnswers());
+            showAnswersForCurrentQuestionInRandomOrder(currentQuestion, orderForAnswersSet);
+            askUserForAnswers(currentQuestion, new ArrayList<Integer>(orderForAnswersSet));
         }
 
         System.out.println("__________________________");
 
-        int i = 1;
-        for (TestData.Question question : test.getQuestions()) {
-            // We show the question and answers to a user
-            System.out.println("Question " + i + ": " + question.getQuestionText());
-            i++;
-            int j = 1;
-            for (TestData.Question.Answer answer : question.getAnswers()) {
-                System.out.println(j + ". " + answer.getAnswerText());
-                j++;
-            }
-            System.out.println("Write the numbers of correct answers: ");
+    }
 
-        }
-        
-    }   
-
-    static protected void askAnswersFromUser(TestData.Question q) {
-
+    static protected void askUserForAnswers(TestData.Question q, ArrayList<Integer> orderForAnswersList) {
         // We ask for answers from a User
+        System.out.println("Write the numbers of correct answers: ");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int numberOfCorrectAnswers = q.numberOfCorrectAnswers();
         HashSet<Integer> previousCorrectAnswers = new HashSet<>(); // we keep here all correct answers that have already been named by User to prevent naming the same answer twice
@@ -67,7 +54,7 @@ public class Index extends JFrame {
                 String answerUser = br.readLine();
                 int answerInteger = Integer.parseInt(answerUser);
                 //The system checks the answer and writes back
-                if (q.getAnswers().get(answerInteger - 1).isCorrect() == true) { // if answer is correct. "answerInteger - 1" because we start from 0
+                if (q.getAnswers().get(orderForAnswersList.get(answerInteger - 1)).isCorrect() == true) { // if answer is correct. "answerInteger - 1" because we start from 0
                     if (previousCorrectAnswers.contains(answerInteger - 1)) { // User already chose this answer before
                         System.out.println("answer is correct but you've already chosen it before");
                     } else {
@@ -87,34 +74,32 @@ public class Index extends JFrame {
     }
 
 
-//Method to become Set with Random Order. Use for Question Order. Use for Answers Order
-static protected LinkedHashSet randomOrder(int size){
-        LinkedHashSet<Integer> randomOrderSet= new LinkedHashSet<Integer>();
+    //Method to become Set with Random Order. Use for Question Order. Use for Answers Order
+    static protected LinkedHashSet randomOrder(int size) {
+        LinkedHashSet<Integer> randomOrderSet = new LinkedHashSet<Integer>();
 
         Random rand = new Random();
-        boolean bool=true;
+        boolean bool = true;
         while (bool) {
             randomOrderSet.add(rand.nextInt(size));
-            if(randomOrderSet.size()==size){
-                bool=false;
-            }     
+            if (randomOrderSet.size() == size) {
+                bool = false;
+            }
         }
-          return randomOrderSet;  
-        }
-     
-     static protected void getAnswerFromOneQuestionInRandomOrder(TestData.Question q){
+        return randomOrderSet;
+    }
+
+    static protected void showAnswersForCurrentQuestionInRandomOrder(TestData.Question q, LinkedHashSet<Integer> orderForAnswersSet) {
         //Answer from one Question in Random order  here. 
         //Later to go through EVERY answer whith this kode. Maybe separate Method willbe good here
-        System.out.println("Answers for the one  Question in Random order");
-        
-        LinkedHashSet<Integer> orderForAnswersSet=randomOrder(q.getTheNumberOfAllAnswers());
-        Iterator it2=orderForAnswersSet.iterator();
+
+        Iterator it2 = orderForAnswersSet.iterator();
         int a2;
-        while(it2.hasNext()){
-            a2=(int)it2.next();
-            System.out.println(q.getAnswers().get(a2).getAnswerText());
-       }
-     }
-        
-     
+        int questionNumberForUser = 1;
+        while (it2.hasNext()) {
+            a2 = (int) it2.next();
+            System.out.println(questionNumberForUser + ": " + q.getAnswers().get(a2).getAnswerText());
+            questionNumberForUser++;
+        }
+    }
 }
