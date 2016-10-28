@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.ArrayList;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -16,14 +17,12 @@ public class Index extends JFrame {
     public static void main(String[] args) {
         TestData test = new TestData(1);
        //We create objekt from OurFrame (actually this is JFrame). This way we can put all JFrame Code into OurFrame, and not here. Or we can make some JFrames for later use
-        JFrame jf = new OurFrame();
+        String description="The test name is: " + test.getTestName();
+        JFrame jf = new OurFrame(description);
+       
         
-        
-
-        System.out.println("The test name is: " + test.getTestName());
-        System.out.println("The test description is: " + test.getTestDescription());
-
-        System.out.println();
+       String description2="The test description is: " + test.getTestDescription();
+       System.out.println();
 
         //Questions (to see what happend - System.out.println()
         LinkedHashSet<Integer> orderForQuestionsSet = randomOrder((test.getTheNumberOfQuestions() - 1));
