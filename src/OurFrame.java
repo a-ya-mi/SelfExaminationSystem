@@ -16,13 +16,14 @@ import java.awt.event.ActionListener;
  * @author Aksana
  */
 public class OurFrame extends JFrame{
-    JLabel text;
+    JLabel textQuestion;
+    JLabel textAnswers;
     JLabel t;
     JButton buttonCheck;
     JButton buttonNext;
-       
+    JTextField eingabe;   
+    
     public OurFrame(String description){
-       setVisible(true);
        setSize(800,400);
        //always write ExitOnClose (if not, than Thread will stay open and never closes)  
        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,24 +33,34 @@ public class OurFrame extends JFrame{
        setResizable(false);
        setLayout(null);
        
-       text = new JLabel(description);
+       textQuestion = new JLabel(description);
        //to see the Text inside we use Bounds
-       text.setBounds(120,7,500,22);
+       textQuestion.setBounds(120,7,500,22);
        Font schrift = new Font ("Serif", Font.BOLD + Font.ITALIC, 22);
-       text.setFont(schrift);
-       add(text);
+       textQuestion.setFont(schrift);
+       add(textQuestion);
         
+       textAnswers = new JLabel("Answers and their numbers");
+       //to see the Text inside we use Bounds
+       textAnswers.setBounds(10,40,500,22);
+       Font schrift2 = new Font ("Serif", Font.PLAIN, 20);
+       textAnswers.setFont(schrift2);
+       add(textAnswers);
        
        buttonCheck = new JButton("Check the answer");
        buttonCheck.setBounds(50,300,200,22);
+       buttonCheck.addActionListener(new UnserListener());
        add(buttonCheck); 
-       
        
        buttonNext = new JButton("Next question");
        buttonNext.setBounds(350,300,200,22);
-       buttonNext.addActionListener(new UnserListener());
        add(buttonNext);
         
+       eingabe = new JTextField();
+       eingabe.setBounds(10,80,500,50);
+       add(eingabe);
+       
+       setVisible(true);
     }
     
     
@@ -60,7 +71,8 @@ public class OurFrame extends JFrame{
     
         @Override
         public void actionPerformed(ActionEvent ae) {
-            text.setText("Yo!");
+            String s = eingabe.getText();
+            textAnswers.setText("Your answers were - " + s);
         }
     
     } 
